@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace vixikhd\libdiscord\webhook\embed;
 
 use pocketmine\color\Color;
+use vixikhd\libdiscord\utils\ColorParser;
 use function date;
-use function hexdec;
-use function sprintf;
 use function strtotime;
 
 class Embed {
@@ -39,7 +38,7 @@ class Embed {
 	}
 
 	public function setColor(Color $color): self {
-		return $this->set("color", hexdec(sprintf("%02x%02x%02x", $color->getR(), $color->getG(), $color->getB())));
+		return $this->set("color", ColorParser::writeColor($color));
 	}
 
 	public function setFooter(string $text, ?string $iconUrl = null, ?string $proxyIconUrl = null): self {
